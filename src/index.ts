@@ -1,5 +1,9 @@
 import { FeatureFlagVariant, FeaturesFlagsResponse, FeaturesComponents, IFeaturesComponent } from "./types"
 
+/**
+ * Creates a scoped features component to fetch features flag from a given application.
+ * @public
+ */
 export async function createFeaturesComponent(
   components: FeaturesComponents,
   referer: string
