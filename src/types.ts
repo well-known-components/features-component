@@ -1,5 +1,8 @@
 import { IConfigComponent, IFetchComponent, ILoggerComponent } from "@well-known-components/interfaces"
 
+/**
+ * @public
+ */
 export type FeatureFlagVariant = {
   name: string
   payload: {
@@ -9,17 +12,26 @@ export type FeatureFlagVariant = {
   enabled: boolean
 }
 
+/**
+ * @public
+ */
 export type FeaturesFlagsResponse = {
   flags: Record<string, boolean>
   variants: Record<string, FeatureFlagVariant>
 }
 
+/**
+ * @public
+ */
 export type FeaturesComponents = {
   fetch: IFetchComponent
   logs: ILoggerComponent
   config: IConfigComponent
 }
 
+/**
+ * @public
+ */
 export type IFeaturesComponent = {
   /**
    * Helper to get whether a feature flag is enabled or disabled.
@@ -28,8 +40,8 @@ export type IFeaturesComponent = {
    * The env key will be determined from the application and the flag. For example, if the
    * application is "explorer" and the flag is "some-crazy-feature", it will look
    * for it as FF_EXPLORER_SOME_CRAZY_FEATURE.
-   * @param app Appplication name.
-   * @param feature Feature key without the application name prefix. For example for the "builder-feature".
+   * @param app - Appplication name.
+   * @param feature - Feature key without the application name prefix. For example for the "builder-feature".
    * @returns Whether the feature is enabled or not and its variant.
    */
   getEnvFeature(app: string, feature: string): Promise<string | undefined>
@@ -37,6 +49,9 @@ export type IFeaturesComponent = {
   getFeatureVariant(app: string, feature: string): Promise<FeatureFlagVariant | null>
 }
 
+/**
+ * @public
+ */
 export enum ApplicationName {
   EXPLORER = "explorer",
   BUILDER = "builder",
@@ -49,6 +64,9 @@ export enum ApplicationName {
   TEST = "test",
 }
 
+/**
+ * @public
+ */
 export type TestComponents = FeaturesComponents & {
   features: IFeaturesComponent
 }
