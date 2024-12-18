@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 20.x
-          cache: npm
+          node-version: 20
+          cache: 'npm'
       - name: install
         run:  npm install
       - name: build
@@ -29,6 +29,8 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
           access: public
+          ## sign the deployment
+          provenance: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
@@ -37,10 +39,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 20.x
-          cache: npm
+          node-version: 20
+          cache: 'npm'
       - name: install
         run:  npm install
       - name: build
