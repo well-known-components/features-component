@@ -14,9 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.x
           cache: 'npm'
       - name: install
         run:  npm install
@@ -28,12 +28,14 @@ jobs:
   build-push:
     needs: test-node-20
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.x
           cache: 'npm'
       - name: install
         run:  npm install
@@ -44,9 +46,8 @@ jobs:
       - name: Publish
         uses: menduz/oddish-action@master
         with:
+          deterministic-snapshot: true
           registry-url: "https://registry.npmjs.org"
           access: public
-          ## sign the deployment
-          provenance: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
