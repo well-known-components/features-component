@@ -62,6 +62,7 @@ export enum ApplicationName {
   EVENTS = "events",
   LANDING = "landing",
   TEST = "test",
+  CORE = "core"
 }
 
 /**
