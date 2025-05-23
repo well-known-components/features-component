@@ -15,6 +15,8 @@ export enum ApplicationName {
     // (undocumented)
     BUILDER = "builder",
     // (undocumented)
+    CORE = "core",
+    // (undocumented)
     DAO = "dao",
     // (undocumented)
     DAPPS = "dapps",
